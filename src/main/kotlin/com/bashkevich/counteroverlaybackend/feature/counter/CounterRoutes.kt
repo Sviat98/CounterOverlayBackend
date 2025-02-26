@@ -1,5 +1,6 @@
 package com.bashkevich.counteroverlaybackend.feature.counter
 
+import com.bashkevich.counteroverlaybackend.model.BasicResponseBody
 import com.bashkevich.counteroverlaybackend.model.counter.CounterBodyDto
 import com.bashkevich.counteroverlaybackend.model.counter.CounterConnectionManager
 import com.bashkevich.counteroverlaybackend.model.counter.CounterDeltaDto
@@ -54,7 +55,7 @@ fun Route.counterRoutes() {
 
                 counterService.changeCounterValue(counterId = id, counterDelta = bodyWithDelta.delta)
 
-                call.respond(HttpStatusCode.OK,"Counter successfully changed")
+                call.respond(HttpStatusCode.OK, BasicResponseBody("Counter successfully changed"))
             }
             webSocket {
                 val id = call.parameters["id"]?.toIntOrNull() ?: 0
