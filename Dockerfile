@@ -1,4 +1,4 @@
-FROM gradle:latest AS build
+FROM gradle:9.0.0-jdk21 AS build
 WORKDIR /app
 
 #Копируем исходный код и файлы Gradle
@@ -16,6 +16,9 @@ WORKDIR /app
 
 # Копируем собранный JAR-файл из стадии сборки
 COPY --from=build /app/build/libs/*.jar ./counteroverlaybackend.jar
+
+# Копируем папку openapi из стадии сборки
+COPY --from=build /app/build/openapi ./openapi
 
 # Открываем порт, на котором работает Ktor
 EXPOSE 8080

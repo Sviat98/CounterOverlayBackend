@@ -20,9 +20,7 @@ import io.ktor.server.websocket.webSocket
 import io.ktor.websocket.CloseReason
 import io.ktor.websocket.Frame
 import io.ktor.websocket.close
-import io.ktor.websocket.readText
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.isActive
@@ -32,6 +30,11 @@ import org.koin.ktor.ext.inject
 fun Route.counterRoutes() {
     val counterService by application.inject<CounterService>()
     route("/counters") {
+        /**
+         * Get a counters list.
+         *
+         *  @response 200 The list of items.
+         */
         get {
             val counters = counterService.getCounters()
             call.respond(counters)
