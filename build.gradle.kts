@@ -26,7 +26,7 @@ ktor{
         version = "2.1"
         summary = "This is a sample API"
         // Location of the generated specification (defaults to openapi/generated.json)
-        target = project.layout.buildDirectory.file("openapi/documentation.json")
+        target = project.layout.projectDirectory.file("openapi/documentation.json")
     }
 }
 

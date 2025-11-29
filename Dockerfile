@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=build /app/build/libs/*.jar ./counteroverlaybackend.jar
 
 # Копируем папку openapi из стадии сборки
-COPY --from=build /app/build/openapi ./openapi
+COPY --from=build /app/openapi ./openapi
 
 # Открываем порт, на котором работает Ktor
 EXPOSE 8080
