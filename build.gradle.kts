@@ -81,7 +81,3 @@ ktor {
         )
     }
 }
-
-kotlin {
-    jvmToolchain(17)
-}
