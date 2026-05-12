@@ -8,6 +8,7 @@ import com.bashkevich.counteroverlaybackend.plugins.configureRouting
 import com.bashkevich.counteroverlaybackend.plugins.configureSerialization
 import com.bashkevich.counteroverlaybackend.plugins.configureSockets
 import com.bashkevich.counteroverlaybackend.plugins.configureStatusPages
+import com.bashkevich.counteroverlaybackend.plugins.configureSwagger
 import io.ktor.server.application.*
 import io.ktor.server.netty.EngineMain
 
@@ -23,5 +24,6 @@ fun Application.module() {
     configureMonitoring()
     configureDatabase()
     configureRouting()
+    configureSwagger()
     configureStatusPages()
 }

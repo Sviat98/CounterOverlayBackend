@@ -20,11 +20,5 @@ fun Application.configureRouting() {
 //        swaggerUI(path = "swagger", swaggerFile = "openapi/documentation.json") {
 //            //version = "4.15.5"
 //        }
-        swaggerUI("/swaggerUI") {
-            info = OpenApiInfo("My API", "1.0")
-            source = OpenApiDocSource.Routing(ContentType.Application.Json) {
-                routingRoot.descendants()
-            }
-        }
     }
 }
