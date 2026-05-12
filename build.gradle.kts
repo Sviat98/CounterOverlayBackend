@@ -8,12 +8,12 @@ plugins {
 group = "com.bashkevich.counteroverlaybackend"
 version = "0.0.1"
 
-//application {
-//    mainClass = "io.ktor.server.netty.EngineMain"
-//
-//    val isDevelopment: Boolean = project.ext.has("development")
-//    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
-//}
+application {
+    mainClass = "io.ktor.server.netty.EngineMain"
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
 
 repositories {
     mavenCentral()
