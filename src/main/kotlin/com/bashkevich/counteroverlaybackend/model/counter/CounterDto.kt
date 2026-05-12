@@ -11,6 +11,8 @@ data class CounterDto(
     val name: String,
     @SerialName(value = "value")
     val value: Int,
+    @SerialName(value = "theme_id")
+    val themeId: String,
 )
 
 @Serializable
@@ -30,5 +32,6 @@ data class CounterDeltaDto(
 fun CounterEntity.toDto() = CounterDto(
     id = this.id.value.toString(),
     name = this.name,
-    value = this.value
+    value = this.value,
+    themeId = theme.id.value.toString()
 )

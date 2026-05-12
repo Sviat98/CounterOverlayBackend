@@ -3,6 +3,7 @@ package com.bashkevich.counteroverlaybackend.feature.counter
 import com.bashkevich.counteroverlaybackend.plugins.dbQuery
 import com.bashkevich.counteroverlaybackend.model.counter.CounterEntity
 import com.bashkevich.counteroverlaybackend.model.counter.CounterObserver
+import com.bashkevich.counteroverlaybackend.model.theme.ThemeEntity
 
 class CounterRepository {
 
@@ -23,6 +24,7 @@ class CounterRepository {
             CounterEntity.new {
                 name = counterName
                 value = counterValue
+                theme = ThemeEntity[1]
             }
         }
     }

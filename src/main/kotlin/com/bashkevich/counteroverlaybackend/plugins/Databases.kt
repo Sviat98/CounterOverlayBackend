@@ -1,6 +1,10 @@
 package com.bashkevich.counteroverlaybackend.plugins
 
 import com.bashkevich.counteroverlaybackend.model.counter.CounterTable
+import com.bashkevich.counteroverlaybackend.model.theme.ThemeColor
+import com.bashkevich.counteroverlaybackend.model.theme.ThemeContent
+import com.bashkevich.counteroverlaybackend.model.theme.ThemeEntity
+import com.bashkevich.counteroverlaybackend.model.theme.ThemeTable
 import io.ktor.server.application.*
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.*
@@ -48,8 +52,15 @@ fun Application.configureDatabase() {
 
     transaction {
         SchemaUtils.create(
-            CounterTable
+            CounterTable, ThemeTable
         )
+
+//        ThemeEntity.new {
+//            content = ThemeContent(backgroundColor = ThemeColor("FF0000"), textColor = ThemeColor("FFFFFF"))
+//        }
+//        ThemeEntity.new {
+//            content = ThemeContent(backgroundColor = ThemeColor("FF00FF"), textColor = ThemeColor("FFFFFF"))
+//        }
     }
 }
 

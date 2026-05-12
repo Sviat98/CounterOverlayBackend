@@ -8,32 +8,17 @@ plugins {
 group = "com.bashkevich.counteroverlaybackend"
 version = "0.0.1"
 
-application {
-    mainClass = "io.ktor.server.netty.EngineMain"
-
-    val isDevelopment: Boolean = project.ext.has("development")
-    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
-}
+//application {
+//    mainClass = "io.ktor.server.netty.EngineMain"
+//
+//    val isDevelopment: Boolean = project.ext.has("development")
+//    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+//}
 
 repositories {
     mavenCentral()
 }
 
-ktor{
-    @OptIn(io.ktor.plugin.OpenApiPreview::class)
-    openApi {
-        title = "OpenAPI example"
-        version = "2.1"
-        summary = "This is a sample API"
-        // Location of the generated specification (defaults to openapi/generated.json)
-        target = project.layout.projectDirectory.file("openapi/documentation.json")
-    }
-}
-
-// Builds OpenAPI specification automatically
-tasks.processResources {
-    dependsOn("buildOpenApi")
-}
 
 dependencies {
     implementation(libs.ktor.server.core)
@@ -48,6 +33,8 @@ dependencies {
     implementation(libs.exposed.core)
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.dao)
+    implementation(libs.exposed.json)
+
 
     implementation(libs.ktor.server.call.logging)
     implementation(libs.ktor.server.cors)
