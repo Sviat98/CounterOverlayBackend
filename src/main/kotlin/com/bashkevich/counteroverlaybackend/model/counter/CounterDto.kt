@@ -21,6 +21,8 @@ data class CounterBodyDto(
     val name: String,
     @SerialName(value = "value")
     val value: Int = 0,
+    @SerialName(value = "theme_id")
+    val themeId: Int,
 )
 
 @Serializable

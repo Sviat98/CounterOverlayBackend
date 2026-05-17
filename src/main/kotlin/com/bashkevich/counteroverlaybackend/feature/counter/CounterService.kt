@@ -24,9 +24,9 @@ class CounterService(
         }
     }
 
-    suspend fun addCounter(counterName: String, counterValue: Int): CounterDto {
+    suspend fun addCounter(counterName: String, counterValue: Int, themeId: Int): CounterDto {
         return dbQuery {
-            counterRepository.addCounter(counterName,counterValue).toDto()
+            counterRepository.addCounter(counterName, counterValue, themeId).toDto()
         }
     }
 

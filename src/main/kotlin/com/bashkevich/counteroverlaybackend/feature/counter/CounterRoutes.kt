@@ -42,7 +42,7 @@ fun Route.counterRoutes() {
         post {
             val counterBody = call.receive(CounterBodyDto::class)
 
-            val newCounter = counterService.addCounter(counterName = counterBody.name, counterValue = counterBody.value)
+            val newCounter = counterService.addCounter(counterName = counterBody.name, counterValue = counterBody.value, themeId = counterBody.themeId)
 
             call.respond(HttpStatusCode.Created, newCounter)
         }

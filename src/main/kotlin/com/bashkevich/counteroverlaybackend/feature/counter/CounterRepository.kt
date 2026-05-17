@@ -19,12 +19,12 @@ class CounterRepository {
         }
     }
 
-    suspend fun addCounter(counterName: String, counterValue: Int): CounterEntity {
+    suspend fun addCounter(counterName: String, counterValue: Int, themeId: Int): CounterEntity {
         return dbQuery {
             CounterEntity.new {
                 name = counterName
                 value = counterValue
-                theme = ThemeEntity[1]
+                theme = ThemeEntity[themeId]
             }
         }
     }
