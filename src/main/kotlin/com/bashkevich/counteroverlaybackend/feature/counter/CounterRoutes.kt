@@ -5,7 +5,6 @@ import com.bashkevich.counteroverlaybackend.model.counter.CounterBodyDto
 import com.bashkevich.counteroverlaybackend.model.counter.CounterConnectionManager
 import com.bashkevich.counteroverlaybackend.model.counter.CounterDeltaDto
 import com.bashkevich.counteroverlaybackend.model.counter.CounterObserver
-import com.bashkevich.counteroverlaybackend.model.counter.toDto
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
@@ -21,7 +20,6 @@ import io.ktor.websocket.CloseReason
 import io.ktor.websocket.Frame
 import io.ktor.websocket.close
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -90,13 +88,13 @@ fun Route.counterRoutes() {
 //                }
 
                 val job = launch {
-                    counterFlow.map { counterEntity -> counterEntity.toDto() }.onStart {
+                    counterFlow.onStart {
                         if(counterFlow.replayCache.isEmpty()){
                             val initialCounter = counterService.getCounterById(id)
                             emit(initialCounter)
                         }
                     }.collectLatest { counterDto ->
-                        sendSerialized(counterDto) // Send JSON response
+                        sendSerialized(counterDto)
                     }
                 }
 

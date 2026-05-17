@@ -5,19 +5,19 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
 object CounterObserver {
-    private val counterFlows = mutableMapOf<Int, MutableSharedFlow<CounterEntity>>()
+    private val counterFlows = mutableMapOf<Int, MutableSharedFlow<CounterDto>>()
 
-    fun getCounterFlow(id: Int): SharedFlow<CounterEntity> {
+    fun getCounterFlow(id: Int): SharedFlow<CounterDto> {
         return counterFlows.getOrPut(id) {
             MutableSharedFlow(replay = 1)
         }.asSharedFlow()
     }
 
-    suspend fun notifyChange(counter: CounterEntity) {
-        val id = counter.id.value
+    suspend fun notifyChange(counterDto: CounterDto) {
+        val id = counterDto.id.toInt()
         val flow = counterFlows.getOrPut(id) {
             MutableSharedFlow(replay = 1)
         }
-        flow.emit(counter)
+        flow.emit(counterDto)
     }
 }

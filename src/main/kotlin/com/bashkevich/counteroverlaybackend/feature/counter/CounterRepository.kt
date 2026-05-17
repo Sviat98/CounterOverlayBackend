@@ -3,6 +3,7 @@ package com.bashkevich.counteroverlaybackend.feature.counter
 import com.bashkevich.counteroverlaybackend.plugins.dbQuery
 import com.bashkevich.counteroverlaybackend.model.counter.CounterEntity
 import com.bashkevich.counteroverlaybackend.model.counter.CounterObserver
+import com.bashkevich.counteroverlaybackend.model.counter.toDto
 import com.bashkevich.counteroverlaybackend.model.theme.ThemeEntity
 
 class CounterRepository {
@@ -36,7 +37,7 @@ class CounterRepository {
             }
 
             counter?.let {
-                CounterObserver.notifyChange(it)
+                CounterObserver.notifyChange(it.toDto())
             }
 
             counter
